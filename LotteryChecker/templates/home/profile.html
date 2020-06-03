@@ -35,9 +35,9 @@
   </tr>
   {% for ticket in tickets %}
   <tr>
-    <th>{{ticket.WB1}} {{ticket.WB2}} {{ticket.WB3}} {{ticket.WB4}} {{ticket.WB5}} <p style="diplay:inline; color:red;">{{ticket.RB}}</p></th>
-    <th> {{ticket.DD}} </th> 
-    <th>{{ticket.status}}</th>
+    <td>{{ticket.WB1}} {{ticket.WB2}} {{ticket.WB3}} {{ticket.WB4}} {{ticket.WB5}} <p style="color:red;">{{ticket.RB}}</p></td>
+    <td> {{ticket.DD}} </td> 
+    <td>{{ticket.status}}</td>
     <th><a href="/delete/{{ ticket.id }}">Delete</a></th>
   </tr>
   {% endfor %}
