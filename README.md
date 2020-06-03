@@ -22,7 +22,14 @@ A web application to check if you have won the Megamillions.
     - Registering users to the web application
     - There is no login/logout view. The default Django views were used for this.
 
-## Technologies on which the application was built on
-1) Python 3.8.0
-2) Django 2.2.6
+## Modules needed to run the application
+1) asgiref==3.2.7
+2) certifi==2020.4.5.1
+3) chardet==3.0.4
+4) Django==3.0.6
+5) idna==2.9
+6) pytz==2020.1
+7) requests==2.23.0
+8) sqlparse==0.3.1
+9) urllib3==1.25.9
 
