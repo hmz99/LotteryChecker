@@ -12,15 +12,15 @@ A web application to check if you have won the Megamillions.
 
 ## Views in the application 
 1) The base view is responsible for:
-    a) Updating the winning numbers in the database everytime a user visits the home page. (This can be done better with celery)
-    b) Rendering the index page on a GET request.
-    c) Rendering the results page if a user checks an individual ticket.
+    - Updating the winning numbers in the database everytime a user visits the home page. (This can be done better with celery)
+    - Rendering the index page on a GET request.
+    - Rendering the results page if a user checks an individual ticket.
 2) The home view is responsible for:
-    a) Storing and validating user tickets on a POST request
-    b) Analyzing the winning numbers and returning data in JSON format for graph creation.
+    - Storing and validating user tickets on a POST request
+    - Analyzing the winning numbers and returning data in JSON format for graph creation.
 3) The users view is responsible for:
-    a) Registering users to the web application
-    b) There is no login/logout view. The default Django views were used for this.
+    - Registering users to the web application
+    - There is no login/logout view. The default Django views were used for this.
 
 ## Technologies on which the application was built on
 1) Python 3.8.0
