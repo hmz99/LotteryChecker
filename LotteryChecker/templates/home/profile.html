@@ -1,0 +1,140 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2 class="w3-opacity w3-center" style="padding:0px 16px">Welcome, {{ user.get_username }}</h2>
+
+<h2 class="w3-opacity w3-center" style="padding:0px 16px">Add a Ticket</h2>
+
+<form method="POST" class="w3-center w3-opacity">
+  {% csrf_token %}
+ 
+  <input type="number" id="WB1" name="WB1" min=1 max=70 required>
+
+  <input type="number" id="WB2" name="WB2" min=1 max=70 required>
+
+  <input type="number" id="WB3" name="WB3" min=1 max=70 required>
+  
+  <input type="number" id="WB4" name="WB4" min=1 max=70 required>
+
+  <input type="number" id="WB5" name="WB5" min=1 max=70 required>
+
+  <input style = "border: 2px solid red;"type="number" id="RB" name="RB" min=1 max=25 required> <br>
+  
+  <label for="Date"> Draw Date </label> <br>
+  <input type="date" id="DD" name = "DD" value="" required> <br>
+  <input type="submit" value="Submit">
+
+<h2 class="w3-opacity" style="padding:0px 16px">Your Tickets</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>Numbers</th>
+    <th>Draw Date</th> 
+    <th>Result</th>
+  </tr>
+  {% for ticket in tickets %}
+  <tr>
+    <th>{{ticket.WB1}} {{ticket.WB2}} {{ticket.WB3}} {{ticket.WB4}} {{ticket.WB5}} <p style="diplay:inline; color:red;">{{ticket.RB}}</p></th>
+    <th> {{ticket.DD}} </th> 
+    <th>{{ticket.status}}</th>
+    <th><a href="/delete/{{ ticket.id }}">Delete</a></th>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<h2 class="w3-opacity" style="padding:0px 16px">Top 10 Statistics From Old Drawings</h2>
+
+
+<canvas id="white-chart" data-url="{% url 'stats' %}"></canvas>
+
+
+
+<canvas id="red-chart" data-url="{% url 'stats' %}"></canvas>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+
+  $(function () {
+
+    var $WhiteBallChart = $("#white-chart");
+    $.ajax({
+      url: $WhiteBallChart.data("url"),
+      success: function (data) {
+
+        var ctx = $WhiteBallChart[0].getContext("2d");
+
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.wlabels,
+            datasets: [{
+              label: 'Percentage',
+              backgroundColor: 'blue',
+              data: data.wdata
+            }]          
+          },
+          options: {
+            responsive: true,
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'White Ball Frequency Chart (Percentage)'
+            }
+          }
+        });
+
+      }
+    });
+
+  });
+
+</script>
+
+<script>
+
+  $(function () {
+
+    var $RedBallChart = $("#red-chart");
+    $.ajax({
+      url: $RedBallChart.data("url"),
+      success: function (data) {
+
+        var ctx = $RedBallChart[0].getContext("2d");
+
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.rlabels,
+            datasets: [{
+              label: 'Percentage',
+              backgroundColor: 'blue',
+              data: data.rdata
+            }]          
+          },
+          options: {
+            responsive: true,
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Red Ball Frequency Chart (Percentage)'
+            }
+          }
+        });
+
+      }
+    });
+
+  });
+
+</script>
+
+
+{% endblock %}

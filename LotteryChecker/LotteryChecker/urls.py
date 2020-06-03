@@ -16,8 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from base import views as baseviews
-
+from django.contrib.auth import views as auth_views
+from users import views as userviews
+from home import views as homeviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',baseviews.index),
+    path('login',auth_views.LoginView.as_view()),
+    path('logout',auth_views.LogoutView.as_view()),
+    path('register',userviews.register),
+    path('profile',homeviews.home),
+    path('delete/<str:id>',homeviews.deleteticket),
+    path('stats', homeviews.statistic, name='stats'),
 ]

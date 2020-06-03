@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2 class="w3-center w3-opacity" style="padding:0px 16px">Sign in</h2>
+<form method="POST" class="w3-center w3-opacity">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+
+{% endblock %}
